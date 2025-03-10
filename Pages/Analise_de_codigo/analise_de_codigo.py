@@ -6,7 +6,7 @@ def analise_codigo():
     # Função para carregar o DataFrame e remover colunas "Unnamed"
     @st.cache_data
     def carregar_dados():
-        caminho_arquivo = r'C:\\Users\\T-Gamer\\Desktop\Portal_Ferramentas\\Pages\\Analise_de_codigo\\data\MEGA-BL.xlsx'
+        caminho_arquivo = r'https://github.com/TojiFushiguro2000/Portal_Terceiros/blob/main/Pages/Analise_de_codigo/data/MEGA-BL.xlsx'
         df = pd.read_excel(caminho_arquivo)
         df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 

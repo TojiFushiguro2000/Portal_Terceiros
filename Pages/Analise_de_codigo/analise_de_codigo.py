@@ -1,4 +1,5 @@
 import pandas as pd
+import xlsxwriter
 import streamlit as st
 import requests
 from io import BytesIO

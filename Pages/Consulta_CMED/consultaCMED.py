@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import requests
+from io import BytesIO
 
 def plot_pmc(resultados):
     pmc_data = resultados[['LABORATÓRIO', 'PMC Sem Imposto']]
@@ -16,8 +18,25 @@ def plot_pf(resultados):
 
     st.subheader('Gráfico: PF Sem Impostos')
     st.bar_chart(pf_data.set_index('LABORATÓRIO').sort_values(by='PF Sem Impostos', ascending=True), use_container_width=True)
-
+    
+def carregar_dados():
+    # URL do arquivo no GitHub
+    url = "https://raw.githubusercontent.com/TojiFushiguro2000/Portal_Terceiros/main/Pages/Consulta_CMED/data/dados-CMED.xlsx"
+    
+    # Requisição HTTP para baixar o arquivo
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        # Lê o arquivo Excel diretamente da resposta
+        return pd.read_excel(BytesIO(response.content))
+    else:
+        st.error(f"Erro ao baixar o arquivo: {response.status_code}")
+        return None
+        
 def consulta_cmed():
+    # Carregar dados
+    df = carregar_dados()
+    
     st.title('Consulta à Tabela CMED')
 
     # Carregar os dados do Excel

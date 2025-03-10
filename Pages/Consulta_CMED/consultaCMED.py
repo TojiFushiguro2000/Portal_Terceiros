@@ -18,7 +18,7 @@ def plot_pf(resultados):
 
     st.subheader('Gráfico: PF Sem Impostos')
     st.bar_chart(pf_data.set_index('LABORATÓRIO').sort_values(by='PF Sem Impostos', ascending=True), use_container_width=True)
-    
+
 def carregar_dados():
     # URL do arquivo no GitHub
     url = "https://raw.githubusercontent.com/TojiFushiguro2000/Portal_Terceiros/main/Pages/Consulta_CMED/data/dados-CMED.xlsx"
@@ -37,11 +37,10 @@ def consulta_cmed():
     # Carregar dados
     df = carregar_dados()
     
+    if df is None:
+        return
+    
     st.title('Consulta à Tabela CMED')
-
-    # Carregar os dados do Excel
-    caminho_arquivo = r'C:\\Users\\T-Gamer\Desktop\\Portal_Ferramentas\\Pages\\Consulta_CMED\\data\dados-CMED.xlsx'
-    df = pd.read_excel(caminho_arquivo)
 
     coluna = st.selectbox('Selecione a coluna:', ['SUBSTÂNCIA/API', 'PRODUTO/MARCA'])
     pesquisa = st.text_input('Pesquisa:', '')

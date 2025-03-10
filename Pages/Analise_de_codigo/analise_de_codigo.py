@@ -2,14 +2,38 @@ import pandas as pd
 import streamlit as st
 from io import BytesIO
 
+# URL correta do arquivo RAW no GitHub
+URL_ARQUIVO = "https://raw.githubusercontent.com/TojiFushiguro2000/Portal_Terceiros/main/Pages/Analise_de_codigo/data/MEGA-BL.xlsx"
+
+# Faz a requisição para baixar o arquivo
+response = requests.get(url)
+
+if response.status_code == 200:
+    # Lê o arquivo diretamente em um DataFrame
+    df = pd.read_excel(BytesIO(response.content), engine="openpyxl")
+    print(df.head())  # Exibe as primeiras linhas do arquivo
+else:
+    print("Erro ao baixar o arquivo:", response.status_code)
+
 def analise_codigo():
-    # Função para carregar o DataFrame e remover colunas "Unnamed"
+    # Função para carregar os dados da planilha
     @st.cache_data
     def carregar_dados():
-        caminho_arquivo = r'https://github.com/TojiFushiguro2000/Portal_Terceiros/blob/main/Pages/Analise_de_codigo/data/MEGA-BL.xlsx'
-        df = pd.read_excel(caminho_arquivo)
-        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
-
+        response = requests.get(URL_ARQUIVO)
+        if response.status_code == 200:
+            df = pd.read_excel(BytesIO(response.content), engine="openpyxl")
+            df = df.loc[:, ~df.columns.str.contains('^Unnamed')]  # Remove colunas Unnamed
+            
+            # Ajustes nas colunas
+            if 'Produção' in df.columns:
+                df['Produção'] = df['Produção'].apply(lambda x: int(x) if pd.notnull(x) else x)
+            if 'Código' in df.columns:
+                df['Código'] = df['Código'].astype(str).str.replace(',', '', regex=False)
+    
+            return df
+        else:
+            st.error("Erro ao baixar o arquivo do GitHub")
+            return pd.DataFrame()
 
         
         # Remover as casas decimais na coluna 'Produção'

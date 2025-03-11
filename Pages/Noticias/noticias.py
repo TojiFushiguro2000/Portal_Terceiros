@@ -30,7 +30,7 @@
 
 import streamlit as st
 
-def def noticias(): 
+def noticias(): 
     st.title("Em Desenvolvimento...")
 
 if __name__ == "__main__":

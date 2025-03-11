@@ -1,5 +1,6 @@
 import streamlit as st
 from Pages.Analise_de_codigo.analise_de_codigo import analise_codigo
+from Pages.Noticias.noticias import noticias
 from Pages.LeitorDeContrato.LeitordeContrato import LeitordeContrato
 from Pages.Formulario.formulario import Formulario
 
@@ -24,11 +25,15 @@ st.sidebar.title("Portal de Ferramentas CMO Terceiros")
 
 
 # Exibir as opções de menu
-pagina_selecionada = st.sidebar.radio("Escolha uma funcionalidade:", ["Home", "Análise de Código", "Consulta CMED", "Leitor de Contrato com IA", "Solicitar Serviço"])
+pagina_selecionada = st.sidebar.radio("Escolha uma funcionalidade:", ["Home", "Noticias", "Análise de Código", "Consulta CMED", "Leitor de Contrato com IA", "Solicitar Serviço"])
 
 if pagina_selecionada == "Home":
     st.title("Bem-vindo ao Portal de Ferramentas")
     st.write("Escolha uma funcionalidade no menu lateral.")
+
+elif pagina_selecionada == "Noticias":
+    with st.spinner("Carregando Noticias..."):
+        noticias()  
 
 elif pagina_selecionada == "Análise de Código":
     with st.spinner("Carregando Análise de Código..."):

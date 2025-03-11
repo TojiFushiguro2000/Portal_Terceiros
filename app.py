@@ -13,8 +13,14 @@ except ImportError as e:
     cmed_disponivel = False
 
 # Criar menu lateral para navegar entre os projetos
+
+# Caminho para a imagem
+image_path = r'.\Images\eurofarma-logo.png'
+# Exibir a imagem no menu lateral
+st.sidebar.image(image_path, use_column_width=True)
+
+# Menu lateral
 st.sidebar.title("Portal de Ferramentas CMO Terceiros")
-pagina_selecionada = st.sidebar.radio("Escolha uma funcionalidade:", ["Home", "Análise de Código", "Consulta CMED", "Leitor de Contrato com IA", "Solicitar Serviço"])
 
 if pagina_selecionada == "Home":
     st.title("Bem-vindo ao Portal de Ferramentas")

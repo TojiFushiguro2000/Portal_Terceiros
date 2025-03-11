@@ -1,6 +1,6 @@
 import streamlit as st
 from Pages.Analise_de_codigo.analise_de_codigo import analise_codigo
-#from Pages.Noticias.noticias import noticias
+from Pages.Noticias.noticias import noticias
 from Pages.LeitorDeContrato.LeitordeContrato import LeitordeContrato
 from Pages.Formulario.formulario import Formulario
 

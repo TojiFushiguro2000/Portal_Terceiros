@@ -4,6 +4,7 @@ from Pages.LeitorDeContrato.LeitordeContrato import LeitordeContrato
 from Pages.Formulario.formulario import Formulario
 
 
+
 # Tenta importar a função consulta_cmed e captura possíveis erros
 try:
     from Pages.Consulta_CMED.consultaCMED import consulta_cmed
@@ -21,6 +22,10 @@ st.sidebar.image(image_path, use_column_width=True)
 
 # Menu lateral
 st.sidebar.title("Portal de Ferramentas CMO Terceiros")
+
+
+# Exibir as opções de menu
+pagina_selecionada = st.sidebar.radio("Escolha uma funcionalidade:", ["Home", "Análise de Código", "Consulta CMED", "Leitor de Contrato com IA", "Solicitar Serviço"])
 
 if pagina_selecionada == "Home":
     st.title("Bem-vindo ao Portal de Ferramentas")
@@ -47,5 +52,6 @@ elif pagina_selecionada == "Leitor de Contrato com IA":
 elif pagina_selecionada == "Solicitar Serviço":
     if cmed_disponivel:
         with st.spinner("Carregando Solicitação de Serviço..."):
-            Formulario()  
+            Formulario()
+    else:
         st.error("A funcionalidade Solicitar Serviço não pôde ser carregada.")

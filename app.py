@@ -16,7 +16,7 @@ except ImportError as e:
 # Criar menu lateral para navegar entre os projetos
 
 image_url = "https://raw.githubusercontent.com/TojiFushiguro2000/Portal_Terceiros/main/Images/eurofarma-logo.png"
-st.sidebar.image(image_url, use_column_width=True)
+st.sidebar.image(image_url, use_container_width=True)
 
 
 # Menu lateral

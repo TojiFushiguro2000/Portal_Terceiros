@@ -15,10 +15,9 @@ except ImportError as e:
 
 # Criar menu lateral para navegar entre os projetos
 
-# Caminho para a imagem
-image_path = r'.\Images\eurofarma-logo.png'
-# Exibir a imagem no menu lateral
-st.sidebar.image(image_path, use_column_width=True)
+image_url = "https://raw.githubusercontent.com/TojiFushiguro2000/Portal_Terceiros/main/Images/eurofarma-logo.png"
+st.sidebar.image(image_url, use_column_width=True)
+
 
 # Menu lateral
 st.sidebar.title("Portal de Ferramentas CMO Terceiros")
